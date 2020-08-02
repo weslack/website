@@ -1,7 +1,7 @@
 baseURL: https://weslack.team
 title: weslack
 theme: hugo-notepadium
-copyright: All content is free, unencumbered, and released into the public domain. Do with it what you want. <a href="LICENSE.txt">Unlicense</a>
+copyright: All content is free, unencumbered, and released into the public domain. Do with it what you want. <a href="/LICENSE.txt">Unlicense</a>
 languageCode: en
 defaultContentLanguage: en
 hasCJKLanguage: true
