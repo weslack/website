@@ -1,5 +1,16 @@
-I dedicate any and all copyright interest in this software to the
-public domain. I make this dedication for the benefit of the public at
-large and to the detriment of my heirs and successors. I intend this
-dedication to be an overt act of relinquishment in perpetuity of all
-present and future rights to this software under copyright law.
+## Summary
+
+<!--List a summary of changes here-->
+
+## Issues
+
+<!--List issues that this PR relates to here-->
+
+## Contributor License Agreement
+
+I dedicate any and all copyright interest in this software to the public domain. I make this dedication for the benefit of the public at large and to the detriment of my heirs and successors. I intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.
+
+## Task list
+
+- [x] Agree to Contributor License Agreement
+- [ ] Check to see if it looks okay locally. `hugo server --minify`
