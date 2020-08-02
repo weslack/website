@@ -1,7 +1,7 @@
 baseURL: https://weslack.team
 title: weslack
 theme: hugo-notepadium
-copyright: ©2020 weslack
+copyright: All content is free, unencumbered, and released into the public domain. Do with it what you want. <a href="LICENSE.txt">Unlicense</a>
 languageCode: en
 defaultContentLanguage: en
 hasCJKLanguage: true
@@ -13,9 +13,24 @@ markup:
   goldmark:
     renderer:
       unsafe: false
+frontmatter:
+  date:
+    - "date"
+    - ":git"
+    - ":fileModTime"
+    - "publishDate"
+  lastmod:
+    - ":git"
+    - ":fileModTime"
+    - "lastmod"
+  publishDate:
+    - "publishDate"
+    - "date"
+  expiryDate:
+    - "expiryDate"
 params:
   style: auto
-  dateFormat: 'Jan 02, 2006'
+  dateFormat: Mon, 02 Jan 2006 15:04:05
   readingTime: false
   logo: logo.png
   slogan: DEFCON 28 CTF Fun
@@ -35,15 +50,6 @@ params:
     use: none
     theme: github
     darkTheme: dracula
-  profile:
-    enable: false
-    avatar: >-
-      https://d33wubrfki0l68.cloudfront.net/ddf49425628d8aec7523db143916b34ae1641e11/b97e8/images/gopher-side_color.svg
-    name: weslack
-    bio: >-
-      Hugo is one of the most popular open-source static site generators. With
-      its amazing speed and flexibility, Hugo makes building websites fun again.
-    github: weslack
   nav:
     showCategories: true
     showTags: true
