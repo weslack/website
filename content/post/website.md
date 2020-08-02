@@ -8,7 +8,7 @@ categories:
 draft: false  # change to false when time to publish
 ---
 
-The point of this website is to keep track of our captured flags and the things we've learned at defcon28. We are all doing this remotely, so it makes sense for us to have somewhere to put it all. Also, if we do end up doing pretty well in a CTF, we need to have proof of the capture, including how we did it. This should accomplish that.
+The point of this website is to keep track of our captured flags and the things we've learned at [defcon28](https://defcon.org).<!--more--> We are all doing this remotely, so it makes sense for us to have somewhere to put it all. Also, if we do end up doing pretty well in a CTF we need to have proof of the capture, including how we did it. This should accomplish that.
 
 This website is generated using [Hugo](https://gohugo.io) and deployed using [GitHub actions](https://github.com/features/actions) to [GitHub Pages](https://pages.github.com/). This entire process is configured to be completely automated. Here is the process flow of making a new post
 
