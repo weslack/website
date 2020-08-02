@@ -12,5 +12,5 @@ I dedicate any and all copyright interest in this software to the public domain.
 
 ## Task list
 
-[x] Agree to Contributor License Agreement
-[ ] Check to see if it looks okay locally. `hugo server --minify`
+- [x] Agree to Contributor License Agreement
+- [ ] Check to see if it looks okay locally. `hugo server --minify`
