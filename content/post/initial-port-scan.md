@@ -4,8 +4,9 @@ description: Nmap of the local network
 tags:
   - nmap
   - devices
+  - recon
 categories:
-  - sohoplesslybroken
+  - SOHOplessly Broken
 draft: false  # change to false when time to publish
 ---
 
