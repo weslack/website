@@ -18,7 +18,7 @@ nmap 192.168.10.0/24
 
 ## Control4 Open Source Software Notice
 
-url: http://192.168.10.101/
+url: [http://192.168.10.101/](http://192.168.10.101/)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -29,7 +29,7 @@ PORT | STATE | SERVICE
 
 ## Link Clicker
 
-url: http://192.168.10.187/
+url: [http://192.168.10.187/](http://192.168.10.187/)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -38,7 +38,7 @@ PORT | STATE | SERVICE
 
 ## NUUO Network Video Recorder
 
-url: http://192.168.10.193/
+url: [http://192.168.10.193/](http://192.168.10.193/)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -50,7 +50,7 @@ PORT | STATE | SERVICE
 
 ## Any time & Any where, IP Surveillance for Your Life
 
-url: http://192.168.10.196/
+url: [http://192.168.10.196/](http://192.168.10.196/)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -59,7 +59,7 @@ PORT | STATE | SERVICE
 
 ## GEO Vision - GV-SNVR0811
 
-url: http://192.168.10.197/
+url: [http://192.168.10.197/](http://192.168.10.197/)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -70,7 +70,7 @@ PORT | STATE | SERVICE
 
 ## 192.168.10.208
 
-url: http://192.168.10.208/login
+url: [http://192.168.10.208/login](http://192.168.10.208/login)
 
 PORT | STATE | SERVICE
 --- | --- | ---
@@ -84,7 +84,7 @@ PORT | STATE | SERVICE
 
 ## DCS-930LB1
 
-url: http://192.168.10.209
+url: [http://192.168.10.209](http://192.168.10.209)
 
 PORT | STATE | SERVICE
 --- | --- | ---
