@@ -68,7 +68,7 @@ PORT | STATE | SERVICE
 10000/tcp | open | snet-sensor-mgmt
 
 
-## No NAME
+## 192.168.10.208
 
 url: http://192.168.10.208/login
 
