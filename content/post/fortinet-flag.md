@@ -5,7 +5,7 @@ tags:
   - python
 categories:
   - SOHOplessly Broken
-draft: true  # change to false when time to publish
+draft: false  # change to false when time to publish
 ---
 
 Finding the exploit, we did some google-fu and learned a bit about some of the exploits for the device, but we didn't know which device on the network it was.
