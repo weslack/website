@@ -6,6 +6,7 @@ languageCode: en
 defaultContentLanguage: en
 hasCJKLanguage: true
 enableRobotsTXT: true
+enableGitInfo: true
 markup:
   highlight:
     codeFences: true
