@@ -5,7 +5,7 @@ tags:
   - tools
 categories:
   - SOHOplessly Broken
-draft: true  # change to false when time to publish
+draft: false  # change to false when time to publish
 ---
 
 We've learned how to use couple different tools since we've started working on the SOHOplessly Broken CTF.
