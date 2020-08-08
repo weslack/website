@@ -30,3 +30,21 @@ lo        Link encap:Local Loopback
 ```
 
 We now need to figure out how to pivot to that network to take a look inside it.
+
+## Setting up Proxy
+
+Edit `/etc/proxychains.conf` in local machine.
+
+We need to change the `socks4 127.0.0.1` port to `6022`
+
+Set up a reverse shell with a specific port
+
+```sh
+ssh -D 6022 root@192.168.10.101
+```
+
+Run a command:
+
+```sh
+proxychains nmap 172.16.10.0/24
+```
