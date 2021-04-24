@@ -6,7 +6,7 @@ tags:
   - Static Analysis
 categories:
   - IoT Village CTF
-draft: true  # change to false when time to publish
+draft: false  # change to false when time to publish
 ---
 
 ## Challenge
