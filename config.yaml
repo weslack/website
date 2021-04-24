@@ -34,7 +34,7 @@ params:
   dateFormat: Mon, 02 Jan 2006 15:04:05
   readingTime: false
   logo: logo.png
-  slogan: DEFCON 28 CTF Fun
+  slogan: CTF Fun and Write Ups
   assets:
     css:
       - css/fonts.css
