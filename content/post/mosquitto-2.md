@@ -6,7 +6,7 @@ tags:
   - Base64
 categories:
   - IoT Village
-draft: true  # change to false when time to publish
+draft: false  # change to false when time to publish
 ---
 
 ## Challenge
