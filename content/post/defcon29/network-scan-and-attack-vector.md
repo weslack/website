@@ -99,7 +99,7 @@ PORT | STATE | SERVICE
   - Not shown: 991 closed ports
 
 
-## Unknown Device
+## QNAP NAS1F6D5A
 
 ### URL: [http://192.168.10.145](http://192.168.10.145)
 
@@ -135,7 +135,7 @@ PORT | STATE | SERVICE
   - Not shown: 982 closed ports
 
 
-## Unknown Device
+## ReadyNAS
 
 ### URL: [http://192.168.10.146](http://192.168.10.146)
 
@@ -160,7 +160,7 @@ PORT | STATE | SERVICE
   - Not shown: 993 closed ports
 
 
-## Unknown Device
+## Seagate NAS
 
 ### URL: [http://192.168.10.147](http://192.168.10.147)
 
@@ -186,7 +186,7 @@ PORT | STATE | SERVICE
   - Not shown: 992 closed ports
 
 
-## Unknown Device
+## Vera something
 
 ### URL: [http://192.168.10.148](http://192.168.10.148)
 
@@ -216,7 +216,7 @@ PORT | STATE | SERVICE
   - Not shown: 988 closed ports
 
 
-## Unknown Device
+## Control4
 
 ### URL: [http://192.168.10.174](http://192.168.10.174)
 
@@ -243,7 +243,7 @@ PORT | STATE | SERVICE
   - Not shown: 991 closed ports
 
 
-## Unknown Device
+## Clicker thing
 
 ### URL: [http://192.168.10.187](http://192.168.10.187)
 
@@ -262,7 +262,7 @@ PORT | STATE | SERVICE
   - Not shown: 999 closed ports
 
 
-## Unknown Device
+## Nuuo NVR
 
 ### URL: [http://192.168.10.193](http://192.168.10.193)
 
@@ -284,7 +284,7 @@ PORT | STATE | SERVICE
   - Not shown: 996 closed ports
 
 
-## Unknown Device
+## DCS-930LB1
 
 ### URL: [http://192.168.10.209](http://192.168.10.209)
 
@@ -295,6 +295,7 @@ PORT | STATE | SERVICE
 
 PORT | STATE | SERVICE
 ----|-----|-----
+80/tcp | filtered | http
 
 ### URL: [http://192.168.10.1](http://192.168.10.1)
 
@@ -308,185 +309,6 @@ PORT | STATE | SERVICE
 
 PORT | STATE | SERVICE
 ----|-----|-----
-80/tcp | filtered | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Unknown Device
-
-### URL: [http://192.168.10.137](http://192.168.10.137)
-
-### Path:
-  - 192.168.10.137
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | closed | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Unknown Device
-
-### URL: [http://192.168.10.143](http://192.168.10.143)
-
-### Path:
-  - 192.168.10.143
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | filtered | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Unknown Device
-
-### URL: [http://192.168.10.144](http://192.168.10.144)
-
-### Path:
-  - 192.168.10.144
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-## QNAP NAS1F6D5A
-
-### URL: [http://192.168.10.145](http://192.168.10.145)
-
-### Path:
-  - 192.168.10.145
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## ReadyNAS
-
-### URL: [http://192.168.10.146](http://192.168.10.146)
-
-### Path:
-  - 192.168.10.146
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Seagate NAS
-
-### URL: [http://192.168.10.147](http://192.168.10.147)
-
-### Path:
-  - 192.168.10.147
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Vera something
-
-### URL: [http://192.168.10.148](http://192.168.10.148)
-
-### Path:
-  - 192.168.10.148
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Control4
-
-### URL: [http://192.168.10.174](http://192.168.10.174)
-
-### Path:
-  - 192.168.10.174
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Clicker thing
-
-### URL: [http://192.168.10.187](http://192.168.10.187)
-
-### Path:
-  - 192.168.10.187
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
-
-## Nuuo NVR
-
-### URL: [http://192.168.10.193](http://192.168.10.193)
-
-### Path:
-  - 192.168.10.193
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
 80/tcp | open | http
 443/tcp | open | https
 
@@ -494,22 +316,3 @@ PORT | STATE | SERVICE
 
 ### Notes:
   - Not shown: 998 closed ports
-
-
-## DCS-930LB1
-
-### URL: [http://192.168.10.209](http://192.168.10.209)
-
-### Path:
-  - 192.168.10.209
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
-80/tcp | open | http
-
-### Pwnd: False
-
-### Notes:
-
