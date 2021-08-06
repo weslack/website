@@ -295,20 +295,6 @@ PORT | STATE | SERVICE
 
 PORT | STATE | SERVICE
 ----|-----|-----
-80/tcp | filtered | http
-
-### URL: [http://192.168.10.1](http://192.168.10.1)
-
-### Path:
-  - 192.168.10.1
-
-
-### Ports
-
-### Ports:
-
-PORT | STATE | SERVICE
-----|-----|-----
 80/tcp | open | http
 443/tcp | open | https
 
