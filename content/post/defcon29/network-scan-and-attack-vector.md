@@ -2,12 +2,12 @@
 title: Network Scan and Attack Vector
 description: Network scan results and attack vector information
 tags:
-  - Add some tags
+  - Attack Vector
+  - Network scan
 categories:
   - SOHOplessly Broken
   - defcon29
-  - Attack Vector
-  - Network scan
+
 ---
 
 ## Unknown Device
@@ -16,6 +16,9 @@ categories:
 
 ### Path:
   - 192.168.10.1
+
+
+### Ports
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -72,7 +75,6 @@ PORT | STATE | SERVICE
 ### Pwnd: False
 
 ### Notes:
-
 
 ## QNAP NAS1F6D5A
 
@@ -200,5 +202,4 @@ PORT | STATE | SERVICE
 ### Pwnd: False
 
 ### Notes:
-
 
