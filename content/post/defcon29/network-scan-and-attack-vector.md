@@ -2,12 +2,12 @@
 title: Network Scan and Attack Vector
 description: Network scan results and attack vector information
 tags:
-  - Add some tags
+  - Attack Vector
+  - Network scan
 categories:
   - SOHOplessly Broken
   - defcon29
-  - Attack Vector
-  - Network scan
+
 ---
 
 ## Example Device
