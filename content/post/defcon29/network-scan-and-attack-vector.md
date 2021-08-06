@@ -12,10 +12,13 @@ categories:
 
 ## Example Device
 
-### url: [http://192.168.10.101/](http://192.168.10.101/)
+url: [http://192.168.10.101/](http://192.168.10.101/)
 
-### Path:
+### Path
+
   - 127.0.0.0 -> 192.168.10.101
+
+### Ports
 
 PORT | STATE | SERVICE
 --- | --- | ---
