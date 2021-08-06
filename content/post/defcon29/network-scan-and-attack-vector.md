@@ -63,8 +63,13 @@ PORT | STATE | SERVICE
 
 PORT | STATE | SERVICE
 ----|-----|-----
-80/tcp | filtered | http
+23/tcp | open | telnet
+53/tcp | open | domain
+80/tcp | open | http
+1723/tcp | open | pptp
+4444/tcp | open | krb524
 8080/tcp | open | http-proxy
+
 
 ### Pwnd: False
 
