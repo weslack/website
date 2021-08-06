@@ -28,7 +28,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Drobo 5n2
 
 ### URL: [http://192.168.10.137](http://192.168.10.137)
 
@@ -52,7 +52,7 @@ PORT | STATE | SERVICE
   - Not shown: 995 closed ports
 
 
-## Unknown Device
+## Asus RT N53
 
 ### URL: [http://192.168.10.143](http://192.168.10.143)
 
@@ -72,7 +72,7 @@ PORT | STATE | SERVICE
   - Not shown: 999 filtered ports
 
 
-## Unknown Device
+## Zyxel NSA325 v2
 
 ### URL: [http://192.168.10.144](http://192.168.10.144)
 
@@ -278,10 +278,11 @@ PORT | STATE | SERVICE
 80/tcp | open | http
 443/tcp | open | https
 
-### Pwnd: False
+### Pwnd: True
 
 ### Notes:
   - Not shown: 996 closed ports
+  - No pivot attempts have been made after pwn
 
 
 ## DCS-930LB1
@@ -302,3 +303,5 @@ PORT | STATE | SERVICE
 
 ### Notes:
   - Not shown: 998 closed ports
+  - screen name: admin password: [leave it blank]
+  - camera that doesn't seems useful is visible
