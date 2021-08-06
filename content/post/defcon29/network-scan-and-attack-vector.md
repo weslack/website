@@ -2,12 +2,12 @@
 title: Network Scan and Attack Vector
 description: Network scan results and attack vector information
 tags:
-  - Add some tags
+  - Attack Vector
+  - Network scan
 categories:
   - SOHOplessly Broken
   - defcon29
-  - Attack Vector
-  - Network scan
+
 ---
 
 ## Unknown Device
@@ -16,6 +16,8 @@ categories:
 
 ### Path:
   - 192.168.10.1
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -32,6 +34,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.137
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -55,6 +59,8 @@ PORT | STATE | SERVICE
 ### Path:
   - 192.168.10.143
 
+### Ports:
+
 PORT | STATE | SERVICE
 ----|-----|-----
 80/tcp | filtered | http
@@ -72,6 +78,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.144
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -97,6 +105,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.145
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -132,6 +142,8 @@ PORT | STATE | SERVICE
 ### Path:
   - 192.168.10.146
 
+### Ports:
+
 PORT | STATE | SERVICE
 ----|-----|-----
 80/tcp | open | http
@@ -154,6 +166,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.147
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -178,6 +192,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.148
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -207,6 +223,8 @@ PORT | STATE | SERVICE
 ### Path:
   - 192.168.10.174
 
+### Ports:
+
 PORT | STATE | SERVICE
 ----|-----|-----
 22/tcp | open | ssh
@@ -232,6 +250,8 @@ PORT | STATE | SERVICE
 ### Path:
   - 192.168.10.187
 
+### Ports:
+
 PORT | STATE | SERVICE
 ----|-----|-----
 80/tcp | open | http
@@ -248,6 +268,8 @@ PORT | STATE | SERVICE
 
 ### Path:
   - 192.168.10.193
+
+### Ports:
 
 PORT | STATE | SERVICE
 ----|-----|-----
@@ -269,6 +291,200 @@ PORT | STATE | SERVICE
 ### Path:
   - 192.168.10.209
 
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+
+### URL: [http://192.168.10.1](http://192.168.10.1)
+
+### Path:
+  - 192.168.10.1
+
+
+### Ports
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | filtered | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Unknown Device
+
+### URL: [http://192.168.10.137](http://192.168.10.137)
+
+### Path:
+  - 192.168.10.137
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | closed | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Unknown Device
+
+### URL: [http://192.168.10.143](http://192.168.10.143)
+
+### Path:
+  - 192.168.10.143
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | filtered | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Unknown Device
+
+### URL: [http://192.168.10.144](http://192.168.10.144)
+
+### Path:
+  - 192.168.10.144
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+## QNAP NAS1F6D5A
+
+### URL: [http://192.168.10.145](http://192.168.10.145)
+
+### Path:
+  - 192.168.10.145
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## ReadyNAS
+
+### URL: [http://192.168.10.146](http://192.168.10.146)
+
+### Path:
+  - 192.168.10.146
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Seagate NAS
+
+### URL: [http://192.168.10.147](http://192.168.10.147)
+
+### Path:
+  - 192.168.10.147
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Vera something
+
+### URL: [http://192.168.10.148](http://192.168.10.148)
+
+### Path:
+  - 192.168.10.148
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Control4
+
+### URL: [http://192.168.10.174](http://192.168.10.174)
+
+### Path:
+  - 192.168.10.174
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Clicker thing
+
+### URL: [http://192.168.10.187](http://192.168.10.187)
+
+### Path:
+  - 192.168.10.187
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
+
+## Nuuo NVR
+
+### URL: [http://192.168.10.193](http://192.168.10.193)
+
+### Path:
+  - 192.168.10.193
+
+### Ports:
+
 PORT | STATE | SERVICE
 ----|-----|-----
 80/tcp | open | http
@@ -278,3 +494,22 @@ PORT | STATE | SERVICE
 
 ### Notes:
   - Not shown: 998 closed ports
+
+
+## DCS-930LB1
+
+### URL: [http://192.168.10.209](http://192.168.10.209)
+
+### Path:
+  - 192.168.10.209
+
+### Ports:
+
+PORT | STATE | SERVICE
+----|-----|-----
+80/tcp | open | http
+
+### Pwnd: False
+
+### Notes:
+
