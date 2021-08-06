@@ -74,7 +74,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## QNAP NAS1F6D5A
 
 ### URL: [http://192.168.10.145](http://192.168.10.145)
 
@@ -90,7 +90,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## ReadyNAS
 
 ### URL: [http://192.168.10.146](http://192.168.10.146)
 
@@ -106,7 +106,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Seagate NAS
 
 ### URL: [http://192.168.10.147](http://192.168.10.147)
 
@@ -122,7 +122,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Vera something
 
 ### URL: [http://192.168.10.148](http://192.168.10.148)
 
@@ -138,7 +138,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Control4
 
 ### URL: [http://192.168.10.174](http://192.168.10.174)
 
@@ -154,7 +154,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Clicker thing
 
 ### URL: [http://192.168.10.187](http://192.168.10.187)
 
@@ -170,7 +170,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## Nuuo NVR
 
 ### URL: [http://192.168.10.193](http://192.168.10.193)
 
@@ -186,7 +186,7 @@ PORT | STATE | SERVICE
 ### Notes:
 
 
-## Unknown Device
+## DCS-930LB1
 
 ### URL: [http://192.168.10.209](http://192.168.10.209)
 
