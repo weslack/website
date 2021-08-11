@@ -46,7 +46,7 @@ PORT | STATE | SERVICE
 5000/tcp | open | upnp
 5001/tcp | open | commplex-link
 
-### Pwnd: False
+### Pwnd: True
 
 ### Notes:
   - Not shown: 995 closed ports
@@ -71,10 +71,11 @@ PORT | STATE | SERVICE
 8080/tcp | open | http-proxy
 
 
-### Pwnd: False
+### Pwnd: True
 
 ### Notes:
   - Not shown: 999 filtered ports
+  - Use metasploit linux/misc/asus_infosvr_auth_bypass_exec
 
 
 ## Zyxel NSA325 v2
@@ -104,7 +105,7 @@ PORT | STATE | SERVICE
   - Not shown: 991 closed ports
 
 
-## QNAP NAS1F6D5A
+## QNAP TS-131P
 
 ### URL: [http://192.168.10.145](http://192.168.10.145)
 
@@ -191,7 +192,7 @@ PORT | STATE | SERVICE
   - Not shown: 992 closed ports
 
 
-## Vera something
+## casa verde veralite
 
 ### URL: [http://192.168.10.148](http://192.168.10.148)
 
@@ -261,8 +262,6 @@ PORT | STATE | SERVICE
 ----|-----|-----
 80/tcp | open | http
 
-### Pwnd: False
-
 ### Notes:
   - Not shown: 999 closed ports
 
@@ -304,9 +303,10 @@ PORT | STATE | SERVICE
 80/tcp | open | http
 443/tcp | open | https
 
-### Pwnd: False
+### Pwnd: True
 
 ### Notes:
   - Not shown: 998 closed ports
   - screen name: admin password: [leave it blank]
   - camera that doesn't seems useful is visible
+  - Will not attempt to pivot, unless desperate
