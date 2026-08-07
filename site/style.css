@@ -6,6 +6,8 @@
   --link: #58a6ff;
   --rule: #21262d;
   --code-bg: #161b22;
+  --win: #2eb67d;   /* captured — from the logo's green */
+  --card: #11151c;
 }
 
 * { box-sizing: border-box; }
@@ -95,3 +97,86 @@ blockquote {
   border-left: 3px solid var(--rule);
   color: var(--muted);
 }
+
+/* ---- Event summary pages ---- */
+
+.hero { margin: 0.5rem 0 2rem; }
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero h1 { margin: 0; font-size: 2.25rem; }
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+.stats li { color: var(--muted); }
+.stats b { color: var(--fg-strong); font-weight: 600; }
+
+.targets {
+  margin: 1.5rem 0 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.target { padding: 1rem 1.25rem; border-top: 1px solid var(--rule); }
+.target:first-child { border-top: 0; }
+
+.target-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.target-head h3 { margin: 0; font-size: 1.02rem; }
+.target p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.94rem; }
+.target a { color: var(--link); }
+.target .ref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82em;
+}
+
+.badge {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.badge--win {
+  color: var(--win);
+  border-color: color-mix(in srgb, var(--win) 45%, transparent);
+  background: color-mix(in srgb, var(--win) 12%, transparent);
+}
+
+.pagenav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+.pagenav a { color: var(--muted); text-decoration: none; }
+.pagenav a:hover { color: var(--link); }
+.pagenav a[aria-current="page"] { color: var(--fg-strong); font-weight: 600; }

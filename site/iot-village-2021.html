@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoT Village 2021 — weslack</title>
+<meta name="description" content="weslack at the IoT Village CTF, spring 2021 — firmware, MQTT, and a pivot into a hidden subnet.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/style.css">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d1117">
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <img src="/logo.png" alt="">
+    <a href="/">weslack</a>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">IoT Village CTF · Spring 2021</p>
+    <h1>IoT Village 2021</h1>
+    <p class="lede">A spring rematch on familiar hardware. This one pushed past
+    default-credential wins into firmware decryption and pivoting between subnets.</p>
+    <ul class="stats">
+      <li><b>3</b> flags captured</li>
+      <li><b>15</b> devices enumerated</li>
+      <li><b>2</b> subnets reached</li>
+    </ul>
+  </div>
+
+  <p>Same <code>nmap 192.168.10.0/24</code> starting move, a bigger and NAS-heavier
+  target list, and challenges that wanted more than a public exploit. The
+  highlight was noticing a Control4 box sitting on a second, hidden network and
+  working out how to reach through it.</p>
+
+  <h2>Flags captured</h2>
+  <div class="targets">
+
+    <div class="target">
+      <div class="target-head"><h3>TerraMaster firmware</h3><span class="badge badge--win">Captured</span></div>
+      <p>Binwalk pulled apart the image; the PHP was AES-encrypted at build time.
+      Reusing a published key decrypted the filesystem, and the flag was the MD5
+      of the cleaned-up <code>mb_version()</code> function in <code>version.php</code>.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Control4 — USB flag</h3><span class="badge badge--win">Captured</span></div>
+      <p>Default SSH credentials again, this time chasing <code>flag.txt</code> through
+      USB storage via <code>dmesg</code> and the mounted media.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Mosquitto / MQTT (round 2)</h3><span class="badge badge--win">Captured</span></div>
+      <p>Subscribed to everything, Base64-decoded the creds, and reconstructed an
+      image from a giant Base64 blob — a one-time pad that had to be used fast.</p>
+    </div>
+
+  </div>
+
+  <h2>In progress</h2>
+  <div class="targets">
+
+    <div class="target">
+      <div class="target-head"><h3>Crestron AirMedia</h3><span class="badge">Enumerated</span></div>
+      <p>Known command-injection exploit lined up against the presentation box.
+      <a class="ref" href="https://www.exploit-db.com/exploits/46786">exploit-db/46786</a></p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Pi-hole</h3><span class="badge">Enumerated</span></div>
+      <p>Admin interface exposed; CVE-2020-11108 offers authenticated RCE as a way in.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Pivot → 172.16.10.0/24</h3><span class="badge">Enumerated</span></div>
+      <p>The Control4 host answered on a second interface outside the scanned range.
+      We set up a SOCKS proxy over SSH (<code>ssh -D</code> + proxychains) to explore
+      the network behind it.</p>
+    </div>
+
+  </div>
+
+  <nav class="pagenav" aria-label="Events">
+    <a href="/dc28.html">DC28</a>
+    <a href="/iot-village-2021.html" aria-current="page">IoT Village 2021</a>
+    <a href="/dc29.html">DC29</a>
+  </nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DC28 — weslack</title>
+<meta name="description" content="weslack at DEF CON 28's SOHOplessly Broken CTF, August 2020 — six IoT flags captured.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/style.css">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d1117">
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <img src="/logo.png" alt="">
+    <a href="/">weslack</a>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">DEF CON 28 · August 2020 · SOHOplessly Broken</p>
+    <h1>DC28</h1>
+    <p class="lede">Our first outing, run remotely for the Safe Mode DEF CON. We took on
+    the IoT Village SOHOplessly Broken CTF and walked away with six device flags.</p>
+    <ul class="stats">
+      <li><b>6</b> flags captured</li>
+      <li><b>8</b> devices enumerated</li>
+      <li><b>1</b> network — <code>192.168.10.0/24</code></li>
+    </ul>
+  </div>
+
+  <p>We connected over the IoT Village OpenVPN from a shared Kali box (provisioned
+  with Vagrant) and swept the subnet with <code>nmap</code>. From there it was mostly a
+  hunt for known exploits and default credentials — a good introduction to how
+  much consumer IoT ships wide open.</p>
+
+  <h2>Flags captured</h2>
+  <div class="targets">
+
+    <div class="target">
+      <div class="target-head"><h3>NUUO NVRmini</h3><span class="badge badge--win">Captured</span></div>
+      <p>Unauthenticated command injection through a hidden debugging script gave a
+      root shell. <a class="ref" href="https://www.exploit-db.com/exploits/40209">exploit-db/40209</a></p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>GeoVision GV-SNVR0811</h3><span class="badge badge--win">Captured</span></div>
+      <p>Directory traversal on the web server read <code>/etc/passwd</code> straight off
+      the box, handing us the root hash. <a class="ref" href="https://www.exploit-db.com/exploits/45065">exploit-db/45065</a></p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Fortinet FortiGate</h3><span class="badge badge--win">Captured</span></div>
+      <p>Identified by its admin-page favicon, then opened with the FortiOS SSH
+      backdoor. The flag was the MD5 of the partition label from <code>execute disk list</code>.
+      <a class="ref" href="https://www.exploit-db.com/exploits/43386">exploit-db/43386</a></p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Control4 controller</h3><span class="badge badge--win">Captured</span></div>
+      <p>Logged in with the well-known default root password and read the flag off
+      the SD card at <code>/mnt/sd/Flag.txt</code>.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Control4 — Black Box 1</h3><span class="badge badge--win">Captured</span></div>
+      <p>Same default credentials, different prize: the flag was the MD5 sum of
+      <code>/etc/init.d/c4server</code>.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Mosquitto / MQTT</h3><span class="badge badge--win">Captured</span></div>
+      <p>Subscribed to the <code>#</code> wildcard topic with the given <code>iot:iot</code>
+      creds and waited. About thirty minutes of nouns later, the flag scrolled past.</p>
+    </div>
+
+  </div>
+
+  <p>The remaining hosts — a link-clicker relay, a D-Link camera, and an unnamed
+  DVR — were mapped but left without flags.</p>
+
+  <nav class="pagenav" aria-label="Events">
+    <a href="/dc28.html" aria-current="page">DC28</a>
+    <a href="/iot-village-2021.html">IoT Village 2021</a>
+    <a href="/dc29.html">DC29</a>
+  </nav>
+
+</div>
+</body>
+</html>

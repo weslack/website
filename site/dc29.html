@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DC29 — weslack</title>
+<meta name="description" content="weslack at DEF CON 29, August 2021 — mapping a NAS-heavy network and picking attack vectors.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/style.css">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d1117">
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <img src="/logo.png" alt="">
+    <a href="/">weslack</a>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">DEF CON 29 · August 2021</p>
+    <h1>DC29</h1>
+    <p class="lede">A year on, back on the SOHOplessly Broken range. This round was
+    heavy on reconnaissance — mapping a wall of network storage and lining up
+    attack vectors before committing.</p>
+    <ul class="stats">
+      <li><b>13</b> hosts mapped</li>
+      <li><b>1</b> device owned</li>
+      <li><b>1</b> network — <code>192.168.10.0/24</code></li>
+    </ul>
+  </div>
+
+  <p>We catalogued the subnet host by host — open ports, likely make and model,
+  and a running note of what looked promising. The target list skewed hard toward
+  NAS appliances, each a big attack surface of file-sharing and management
+  services.</p>
+
+  <h2>Attack surface</h2>
+  <div class="targets">
+
+    <div class="target">
+      <div class="target-head"><h3>NUUO NVR</h3><span class="badge badge--win">Owned</span></div>
+      <p><code>ftp · ssh · http · https</code>. The one we opened this round; no
+      pivot attempts made afterward.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Zyxel NSA325 v2</h3><span class="badge">Enumerated</span></div>
+      <p>Wide open — <code>ftp · ssh · http · https · smb · ipp</code> and a
+      <code>tor-orport</code> on 9001. The most exposed box on the network.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>QNAP NAS</h3><span class="badge">Enumerated</span></div>
+      <p>Eighteen open ports, from <code>rsync</code> and <code>nfs</code> to a
+      pair of high unknowns — a lot to work with.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Control4 controller</h3><span class="badge">Enumerated</span></div>
+      <p><code>ssh · http · smb</code> plus the Control4 <code>admd</code> service
+      cluster and VNC — the same family we owned in prior events.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>NAS fleet</h3><span class="badge">Enumerated</span></div>
+      <p>Drobo 5N2, Netgear ReadyNAS, Seagate NAS, and an Asus RT-N53 — all
+      mapped, all running the usual SMB / AFP / web management stack.</p>
+    </div>
+
+    <div class="target">
+      <div class="target-head"><h3>Vera &amp; D-Link DCS-930L</h3><span class="badge">Enumerated</span></div>
+      <p>A home-automation hub behind a wall of filtered ports, and a D-Link camera
+      reachable with a blank admin password.</p>
+    </div>
+
+  </div>
+
+  <nav class="pagenav" aria-label="Events">
+    <a href="/dc28.html">DC28</a>
+    <a href="/iot-village-2021.html">IoT Village 2021</a>
+    <a href="/dc29.html" aria-current="page">DC29</a>
+  </nav>
+
+</div>
+</body>
+</html>
