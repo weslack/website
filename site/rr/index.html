@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weslack</title>
+<meta name="robots" content="noindex">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  /* Fill the whole viewport, preserve aspect ratio (no stretch), crop the overflow. */
+  #bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <img id="bg" src="https://files.weslack.team/rick.gif" alt="">
+  <audio id="au" src="https://files.weslack.team/ngg.mp3" loop autoplay></audio>
+  <script>
+    const au = document.getElementById('au');
+    const play = () => au.play().catch(() => {});
+    // Try immediately on load. Browsers block audible autoplay without a prior
+    // user gesture, so also start on the very first interaction of any kind.
+    play();
+    const events = ['pointerdown', 'keydown', 'touchstart', 'scroll', 'wheel', 'mousemove'];
+    const kick = () => { play(); events.forEach(e => window.removeEventListener(e, kick)); };
+    events.forEach(e => window.addEventListener(e, kick, { passive: true }));
+  </script>
+</body>
+</html>
