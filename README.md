@@ -1,24 +1,35 @@
 # Website
 
-Hugo site for notes.
+The static site behind [weslack.team](https://weslack.team) — a single page with the logo.
 
-## How to create new post
+The CTF notes and write-ups that used to live here have moved to our Outline wiki at
+<https://outline.weslack.team> (collections `DC28`, `IoT Village CTF 2021`, `DC29`, and
+`weslack`). The original Hugo source remains in this repository's git history.
+
+## Layout
+
+Everything published lives in `site/`:
+
+```
+site/
+├── index.html    the page
+├── logo.png      the logo
+├── favicon.ico
+├── CNAME         weslack.team
+└── LICENSE.txt
+```
+
+## Developing
+
+No build step, no dependencies. Preview it locally with:
 
 ```sh
-hugo new post/example-post.md
+python3 -m http.server -d site
 ```
 
-Inside the file, created at `content/post/example-post.md`, will be
+then open <http://localhost:8000>.
 
-```md
----
-title: Example Post
-description: Fill this out with a short blurb
-tags:
-  - Add some tags
-categories:
-  - which ctf
-draft: true  # change to false when time to publish
----
+## Deploying
 
-```
+Pushing to `master` runs `.github/workflows/pages.yml`, which publishes `site/`
+to `weslack/weslack.github.io`.
