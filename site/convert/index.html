@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encoder / Converter · weslack</title>
+<meta name="description" content="Live text encoder/converter: bases, ciphers, and weird encodings. Copy-paste friendly.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d1117">
+<style>
+  :root{
+    --bg:#0d1117; --fg:#c9d1d9; --fg-strong:#f0f6fc; --muted:#8b949e;
+    --link:#58a6ff; --rule:#21262d; --card:#11151c; --code-bg:#161b22; --accent:#2eb67d;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--bg);color-scheme:dark}
+  body{margin:0;color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:60rem;margin:0 auto;padding:2rem 1rem 5rem}
+  header{display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:1.5rem}
+  header img{width:2rem;height:2rem}
+  header a{color:var(--fg-strong);font-weight:600;text-decoration:none}
+  h1{font-size:1.5rem;margin:0 0 .25rem;color:var(--fg-strong);letter-spacing:-.02em}
+  .lede{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+  label{display:block;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin:0 0 .4rem}
+  textarea{width:100%;min-height:7rem;resize:vertical;background:var(--code-bg);color:var(--fg-strong);border:1px solid var(--rule);border-radius:8px;padding:.75rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9rem}
+  .controls{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;margin:.75rem 0 1.5rem}
+  select{background:var(--code-bg);color:var(--fg-strong);border:1px solid var(--rule);border-radius:6px;padding:.4rem .5rem;font-size:.85rem}
+  .err{color:#f85149;font-size:.85rem;min-height:1.2em}
+  h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:1.75rem 0 .6rem;font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));gap:.6rem}
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:.6rem .7rem}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.35rem}
+  .card .name{font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .card .val{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--fg-strong);word-break:break-all;white-space:pre-wrap;max-height:8rem;overflow:auto}
+  .card .val.empty{color:var(--muted);opacity:.5}
+  button.copy{flex:none;background:transparent;border:1px solid var(--rule);color:var(--muted);border-radius:5px;padding:.15rem .5rem;font-size:.72rem;cursor:pointer}
+  button.copy:hover{color:var(--fg-strong);border-color:var(--accent)}
+  button.copy.ok{color:var(--accent);border-color:var(--accent)}
+  footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);font-size:.85rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--link)}
+  a.home{color:var(--link)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="/logo.png" alt=""><a href="/">weslack</a>
+  </header>
+
+  <h1>Encoder / Converter</h1>
+  <p class="lede">Paste anything, pick how to read it, and get every representation. All in your browser &mdash; nothing is sent anywhere.</p>
+
+  <label for="in">Input</label>
+  <textarea id="in" spellcheck="false" placeholder="type or paste here…"></textarea>
+  <div class="controls">
+    <div>
+      <label for="mode" style="display:inline;margin-right:.4rem">Read input as</label>
+      <select id="mode">
+        <option value="text">Text (UTF-8)</option>
+        <option value="hex">Hex</option>
+        <option value="b64">Base64 / Base64URL</option>
+        <option value="b32">Base32</option>
+        <option value="bin">Binary (bits)</option>
+        <option value="dec">Decimal bytes</option>
+        <option value="url">URL-encoded</option>
+      </select>
+    </div>
+    <span id="err" class="err"></span>
+  </div>
+
+  <h2>Bases &amp; byte encodings</h2>
+  <div class="grid" id="bytes"></div>
+
+  <h2>Text transforms &amp; ciphers</h2>
+  <div class="grid" id="text"></div>
+
+  <h2 id="numh" style="display:none">Number (input parsed as one integer)</h2>
+  <div class="grid" id="num"></div>
+
+  <footer>
+    <a href="/">&larr; weslack.team</a> · client-side only, safe for CTF material
+  </footer>
+</div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+
+/* ---------- byte <-> string helpers ---------- */
+const te = new TextEncoder(), td = new TextDecoder("utf-8", {fatal:false});
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+const B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+function bytesToB64(b, urlsafe){
+  let out="", i;
+  for(i=0;i+3<=b.length;i+=3){
+    const n=(b[i]<<16)|(b[i+1]<<8)|b[i+2];
+    out+=B64[(n>>18)&63]+B64[(n>>12)&63]+B64[(n>>6)&63]+B64[n&63];
+  }
+  const rem=b.length-i;
+  if(rem===1){const n=b[i]<<16;out+=B64[(n>>18)&63]+B64[(n>>12)&63]+"==";}
+  else if(rem===2){const n=(b[i]<<16)|(b[i+1]<<8);out+=B64[(n>>18)&63]+B64[(n>>12)&63]+B64[(n>>6)&63]+"=";}
+  if(urlsafe) out=out.replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  return out;
+}
+function b64ToBytes(s){
+  s=s.trim().replace(/-/g,"+").replace(/_/g,"/").replace(/\s+/g,"");
+  s=s.replace(/=+$/,"");
+  const out=[]; let buf=0,bits=0;
+  for(const ch of s){
+    const v=B64.indexOf(ch); if(v<0) throw new Error("not valid Base64");
+    buf=(buf<<6)|v; bits+=6;
+    if(bits>=8){bits-=8; out.push((buf>>bits)&0xff);}
+  }
+  return Uint8Array.from(out);
+}
+function bytesToB32(b){
+  let out="",buf=0,bits=0;
+  for(const x of b){buf=(buf<<8)|x;bits+=8;while(bits>=5){bits-=5;out+=B32[(buf>>bits)&31];}}
+  if(bits>0){out+=B32[(buf<<(5-bits))&31];}
+  while(out.length%8) out+="=";
+  return out;
+}
+function b32ToBytes(s){
+  s=s.trim().toUpperCase().replace(/=+$/,"").replace(/\s+/g,"");
+  const out=[];let buf=0,bits=0;
+  for(const ch of s){const v=B32.indexOf(ch);if(v<0)throw new Error("not valid Base32");buf=(buf<<5)|v;bits+=5;if(bits>=8){bits-=8;out.push((buf>>bits)&0xff);}}
+  return Uint8Array.from(out);
+}
+function bytesToB58(b){
+  if(b.length===0) return "";
+  let zeros=0; while(zeros<b.length&&b[zeros]===0) zeros++;
+  const digits=[0];
+  for(let i=zeros;i<b.length;i++){
+    let carry=b[i];
+    for(let j=0;j<digits.length;j++){carry+=digits[j]<<8;digits[j]=carry%58;carry=(carry/58)|0;}
+    while(carry){digits.push(carry%58);carry=(carry/58)|0;}
+  }
+  let out="1".repeat(zeros);
+  for(let i=digits.length-1;i>=0;i--) out+=B58[digits[i]];
+  return out;
+}
+function bytesToAscii85(b){
+  let out="<~",i;
+  for(i=0;i+4<=b.length;i+=4){
+    let n=((b[i]*256+b[i+1])*256+b[i+2])*256+b[i+3];
+    if(n===0){out+="z";continue;}
+    let c=new Array(5);
+    for(let k=4;k>=0;k--){c[k]=n%85;n=(n/85)|0;}
+    out+=c.map(x=>String.fromCharCode(x+33)).join("");
+  }
+  const rem=b.length-i;
+  if(rem){let n=0;for(let k=0;k<4;k++)n=n*256+(k<rem?b[i+k]:0);
+    let c=new Array(5);for(let k=4;k>=0;k--){c[k]=n%85;n=(n/85)|0;}
+    out+=c.slice(0,rem+1).map(x=>String.fromCharCode(x+33)).join("");}
+  return out+"~>";
+}
+
+/* ---------- decode input -> Uint8Array ---------- */
+function decodeInput(s, mode){
+  switch(mode){
+    case "text": return te.encode(s);
+    case "hex": {
+      const h=s.replace(/0x/gi,"").replace(/[\s:,]/g,"");
+      if(h.length%2) throw new Error("hex needs an even number of digits");
+      if(/[^0-9a-f]/i.test(h)) throw new Error("hex has non-hex characters");
+      const o=new Uint8Array(h.length/2);
+      for(let i=0;i<o.length;i++) o[i]=parseInt(h.substr(i*2,2),16);
+      return o;
+    }
+    case "b64": return b64ToBytes(s);
+    case "b32": return b32ToBytes(s);
+    case "bin": {
+      const bits=s.replace(/[^01]/g,"");
+      if(bits.length%8) throw new Error("binary needs a multiple of 8 bits");
+      const o=new Uint8Array(bits.length/8);
+      for(let i=0;i<o.length;i++) o[i]=parseInt(bits.substr(i*8,8),2);
+      return o;
+    }
+    case "dec": {
+      const parts=s.trim().split(/[\s,]+/).filter(Boolean).map(Number);
+      if(parts.some(n=>!Number.isInteger(n)||n<0||n>255)) throw new Error("decimal bytes must be 0–255");
+      return Uint8Array.from(parts);
+    }
+    case "url": return te.encode(decodeURIComponent(s));
+  }
+}
+
+/* ---------- text ciphers ---------- */
+const rot13 = t => t.replace(/[a-z]/gi,c=>{const b=c<="Z"?65:97;return String.fromCharCode((c.charCodeAt(0)-b+13)%26+b);});
+const rot47 = t => [...t].map(c=>{const x=c.charCodeAt(0);return x>=33&&x<=126?String.fromCharCode(33+(x-33+47)%94):c;}).join("");
+const atbash = t => t.replace(/[a-z]/gi,c=>{const b=c<="Z"?65:97;return String.fromCharCode(b+25-(c.charCodeAt(0)-b));});
+const MORSE={A:".-",B:"-...",C:"-.-.",D:"-..",E:".",F:"..-.",G:"--.",H:"....",I:"..",J:".---",K:"-.-",L:".-..",M:"--",N:"-.",O:"---",P:".--.",Q:"--.-",R:".-.",S:"...",T:"-",U:"..-",V:"...-",W:".--",X:"-..-",Y:"-.--",Z:"--..","0":"-----","1":".----","2":"..---","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",".":".-.-.-",",":"--..--","?":"..--..","/":"-..-.","@":".--.-.","-":"-....-"};
+const toMorse = t => [...t.toUpperCase()].map(c=>c===" "?"/":(MORSE[c]??"")).filter(x=>x!=="").join(" ");
+const NATO={A:"Alfa",B:"Bravo",C:"Charlie",D:"Delta",E:"Echo",F:"Foxtrot",G:"Golf",H:"Hotel",I:"India",J:"Juliett",K:"Kilo",L:"Lima",M:"Mike",N:"November",O:"Oscar",P:"Papa",Q:"Quebec",R:"Romeo",S:"Sierra",T:"Tango",U:"Uniform",V:"Victor",W:"Whiskey",X:"Xray",Y:"Yankee",Z:"Zulu"};
+const toNato = t => [...t.toUpperCase()].map(c=>NATO[c]??(c===" "?"|":c)).join(" ");
+const htmlEntities = t => [...t].map(c=>{const x=c.codePointAt(0);return x<128&&!/[<>&"']/.test(c)?c:"&#"+x+";";}).join("");
+const unicodeEsc = t => [...t].map(c=>{const x=c.codePointAt(0);return x<128?c:"\\u"+x.toString(16).padStart(4,"0");}).join("");
+
+/* ---------- render ---------- */
+function makeCard(name,val){
+  const card=document.createElement("div");card.className="card";
+  const empty = val==="";
+  card.innerHTML=`<div class="top"><span class="name"></span><button class="copy">copy</button></div><div class="val${empty?" empty":""}"></div>`;
+  card.querySelector(".name").textContent=name;
+  card.querySelector(".val").textContent=empty?"—":val;
+  const btn=card.querySelector(".copy");
+  btn.addEventListener("click",()=>{navigator.clipboard.writeText(val).then(()=>{btn.textContent="✓";btn.classList.add("ok");setTimeout(()=>{btn.textContent="copy";btn.classList.remove("ok");},900);});});
+  return card;
+}
+function fill(id,pairs){const el=$("#"+id);el.innerHTML="";for(const [n,v] of pairs) el.appendChild(makeCard(n,v));}
+
+function hexOf(b,sp){return [...b].map(x=>x.toString(16).padStart(2,"0")).join(sp?" ":"");}
+
+function update(){
+  const s=$("#in").value, mode=$("#mode").value, err=$("#err");
+  err.textContent="";
+  let bytes;
+  try{ bytes=decodeInput(s,mode); }
+  catch(e){ err.textContent="⚠ "+e.message; fill("bytes",[]); fill("text",[]); $("#numh").style.display="none"; fill("num",[]); return; }
+  const text = mode==="text" ? s : td.decode(bytes);
+
+  fill("bytes",[
+    ["Text (UTF-8)", text],
+    ["Hex", hexOf(bytes,false)],
+    ["Hex (spaced)", hexOf(bytes,true)],
+    ["Base64", bytesToB64(bytes,false)],
+    ["Base64 URL-safe", bytesToB64(bytes,true)],
+    ["Base32", bytesToB32(bytes)],
+    ["Base58", bytesToB58(bytes)],
+    ["Ascii85 / Base85", bytesToAscii85(bytes)],
+    ["Binary", [...bytes].map(x=>x.toString(2).padStart(8,"0")).join(" ")],
+    ["Octal", [...bytes].map(x=>x.toString(8).padStart(3,"0")).join(" ")],
+    ["Decimal bytes", [...bytes].join(" ")],
+    ["URL-encoded", encodeURIComponent(text)],
+    ["HTML entities", htmlEntities(text)],
+    ["Unicode \\u escapes", unicodeEsc(text)],
+  ]);
+
+  fill("text",[
+    ["ROT13", rot13(text)],
+    ["ROT47", rot47(text)],
+    ["Atbash", atbash(text)],
+    ["Reverse", [...text].reverse().join("")],
+    ["UPPER", text.toUpperCase()],
+    ["lower", text.toLowerCase()],
+    ["Morse", toMorse(text)],
+    ["NATO phonetic", toNato(text)],
+  ]);
+
+  // Number mode: whole input is a single integer literal
+  const t=s.trim(); let n=null;
+  if(/^0x[0-9a-f]+$/i.test(t)) n=BigInt(t);
+  else if(/^0b[01]+$/i.test(t)) n=BigInt(t);
+  else if(/^0o[0-7]+$/i.test(t)) n=BigInt(t);
+  else if(/^-?\d+$/.test(t) && t!=="-") n=BigInt(t);
+  if(n!==null){
+    $("#numh").style.display="";
+    const neg=n<0n, m=neg?-n:n;
+    fill("num",[
+      ["Binary", (neg?"-":"")+"0b"+m.toString(2)],
+      ["Octal", (neg?"-":"")+"0o"+m.toString(8)],
+      ["Decimal", n.toString(10)],
+      ["Hex", (neg?"-":"")+"0x"+m.toString(16)],
+      ["Base36", (neg?"-":"")+m.toString(36)],
+    ]);
+  } else { $("#numh").style.display="none"; fill("num",[]); }
+}
+
+$("#in").addEventListener("input",update);
+$("#mode").addEventListener("change",update);
+$("#in").value="flag{h3ll0_w0rld}";
+update();
+</script>
+</body>
+</html>
