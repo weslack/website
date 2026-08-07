@@ -1,7 +1,7 @@
 # Website
 
 The static site behind [weslack.team](https://weslack.team). No build step, no
-dependencies — plain HTML and CSS deployed straight to GitHub Pages.
+dependencies. Plain HTML and CSS, deployed straight to GitHub Pages.
 
 The CTF notes and write-ups that used to live here have moved to our Outline
 wiki at <https://outline.weslack.team> (collections `DC28`,
@@ -11,7 +11,7 @@ remains in this repository's git history.
 ## Layout
 
 ```
-site/               published — everything here goes live
+site/               published: everything here goes live
 ├── index.html      the landing page (self-contained, just the logo)
 ├── style.css       shared styling for content pages
 ├── logo.png
@@ -19,7 +19,7 @@ site/               published — everything here goes live
 ├── CNAME
 └── LICENSE.txt
 
-drafts/             NOT published — staging area, see drafts/README.md
+drafts/             NOT published: staging area, see drafts/README.md
 └── _template.html
 ```
 
@@ -42,6 +42,11 @@ cp drafts/_template.html drafts/notes.html
 
 When it is ready, `git mv drafts/notes.html site/notes.html`, remove the
 `noindex` meta tag, and push. See [drafts/README.md](drafts/README.md).
+
+GitHub Pages serves a `foo.html` file at the extensionless `/foo` as well, so
+link and share the clean path (`weslack.team/notes`, not `/notes.html`). Set
+each page's `<link rel="canonical">` to the clean URL so the two forms don't
+compete as duplicates.
 
 ## Deploying
 

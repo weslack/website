@@ -16,12 +16,12 @@ if [ "$1" = "--drafts" ]; then
   ROOT="$(mktemp -d)"
   trap 'rm -rf "$ROOT"' EXIT INT TERM
   cp -R site/. "$ROOT"/
-  # _template.html is a starter, not a page — leave it out of the preview.
+  # _template.html is a starter, not a page, so leave it out of the preview.
   find drafts -type f ! -name '_template.html' ! -name 'README.md' -exec cp {} "$ROOT"/ \;
   echo "Serving site/ + drafts/ (drafts are NOT deployed)"
   ls "$ROOT" | sed 's/^/  /'
 else
-  echo "Serving site/ — the live site. Use --drafts to include drafts/."
+  echo "Serving site/ (the live site). Use --drafts to include drafts/."
 fi
 
 echo

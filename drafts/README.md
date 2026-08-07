@@ -1,8 +1,8 @@
 # Drafts
 
 Pages in here are **not deployed**. The Pages workflow only uploads `site/`, so
-anything in this directory lives in the repository — reviewable in a pull
-request — without appearing on [weslack.team](https://weslack.team).
+anything in this directory lives in the repository, reviewable in a pull
+request, without appearing on [weslack.team](https://weslack.team).
 
 ## Writing one
 
@@ -25,5 +25,5 @@ git mv drafts/notes.html site/notes.html
 Then drop the `<meta name="robots" content="noindex">` line from the file, so
 it can be indexed. Pushing to `master` deploys it.
 
-Nothing links to a new page automatically — the landing page is just the logo.
+Nothing links to a new page automatically; the landing page is just the logo.
 Add a link where you want it to be reachable.
