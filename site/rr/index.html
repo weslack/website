@@ -20,15 +20,21 @@
 </head>
 <body>
   <img id="bg" src="https://files.weslack.team/rick.gif" alt="">
-  <audio id="au" src="https://files.weslack.team/ngg.mp3" loop autoplay></audio>
+  <audio id="au" src="https://files.weslack.team/ngg.mp3" loop autoplay muted playsinline></audio>
   <script>
     const au = document.getElementById('au');
-    const play = () => au.play().catch(() => {});
-    // Try immediately on load. Browsers block audible autoplay without a prior
-    // user gesture, so also start on the very first interaction of any kind.
-    play();
+    // Muted autoplay IS allowed, so start it running immediately (silently).
+    au.muted = true;
+    au.play().catch(() => {});
+    // On the first interaction of any kind, unmute and restart from the top,
+    // so the sound kicks in instantly instead of spinning up playback then.
     const events = ['pointerdown', 'keydown', 'touchstart', 'scroll', 'wheel', 'mousemove'];
-    const kick = () => { play(); events.forEach(e => window.removeEventListener(e, kick)); };
+    const kick = () => {
+      au.muted = false;
+      au.currentTime = 0;
+      au.play().catch(() => {});
+      events.forEach(e => window.removeEventListener(e, kick));
+    };
     events.forEach(e => window.addEventListener(e, kick, { passive: true }));
   </script>
 </body>
